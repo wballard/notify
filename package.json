@@ -6,7 +6,8 @@
     "coffee-script": "",
     "js-yaml": "",
     "docopt": "",
-    "colors": ""
+    "colors": "",
+    "lodash": ""
   },
   "engine": {
     "node": ">=0.8.11"
