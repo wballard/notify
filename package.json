@@ -1,0 +1,17 @@
+{
+  "name": "notify",
+  "version": "0.0.1",
+  "description": "Command line for sending messages",
+  "dependencies": {
+    "coffee-script": "",
+    "js-yaml": "",
+    "docopt": "",
+    "colors": ""
+  },
+  "engine": {
+    "node": ">=0.8.11"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}

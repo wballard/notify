@@ -1,0 +1,21 @@
+Notify, command line system for sending and receiving messages.
+
+Usage:
+  notify [options] init
+  notify [options] send [--to=<username>] [--tags=<csv_tags>] [--link=<link>] [--context=<yaml_filename>]
+  notify [options] receive <username>
+  notify [options] clear <username>
+  notify --version
+  notify --help
+
+Options:
+  --version           Print the current version
+  --help              Tells us all about it
+  --directory=<dir>   Use this directory, default is .
+  --debug             Print extra info to help debug
+
+The available commands are:
+  init        Set up a new messaging root directory
+  send        Place a new message for a user
+  receive     Get all new messages for a user
+  clear       Empty out a user's old message archive
