@@ -21,5 +21,5 @@ _sends: _init
 	#better not see these twice
 	$(NOTIFY) receive wballard@glgroup.com | tee -a /tmp/$@
 	$(NOTIFY) clear wballard@glgroup.com | tee -a /tmp/$@
-	ls -laR ./___ | tee -a /tmp/$@
+	ls -aR ./___ | tee -a /tmp/$@
 	$(DIFF) /tmp/$@ test/expected/$@

@@ -97,7 +97,7 @@ Receiving, which is all the files new just now, in order
             if file.slice(-4) is 'yaml'
                 full_name = path.join options.new_dir, file
                 send_files.push
-                    tick: file.split('.')[0]
+                    tick: parseInt(file.split('.')[0])
                     name: file
                     data: yaml.safeLoad fs.readFileSync(full_name, 'utf8')
         send_files = _.sortBy send_files, (x) -> Number(x.tick)

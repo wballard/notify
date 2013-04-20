@@ -24,30 +24,25 @@
       - cat
 []
 [32m2 files cleared[39m
-total 0
-drwxr-xr-x   3 wballard  staff  102 Apr  4 15:11 .
-drwxr-xr-x  12 wballard  staff  408 Apr  4 15:11 ..
-drwxr-xr-x   5 wballard  staff  170 Apr  4 15:11 wballard@glgroup.com
+.
+..
+wballard@glgroup.com
 
 ./___/wballard@glgroup.com:
-total 0
-drwxr-xr-x  5 wballard  staff  170 Apr  4 15:11 .
-drwxr-xr-x  3 wballard  staff  102 Apr  4 15:11 ..
-drwxr-xr-x  2 wballard  staff   68 Apr  4 15:11 cur
-drwxr-xr-x  2 wballard  staff   68 Apr  4 15:11 new
-drwxr-xr-x  2 wballard  staff   68 Apr  4 15:11 tmp
+.
+..
+cur
+new
+tmp
 
 ./___/wballard@glgroup.com/cur:
-total 0
-drwxr-xr-x  2 wballard  staff   68 Apr  4 15:11 .
-drwxr-xr-x  5 wballard  staff  170 Apr  4 15:11 ..
+.
+..
 
 ./___/wballard@glgroup.com/new:
-total 0
-drwxr-xr-x  2 wballard  staff   68 Apr  4 15:11 .
-drwxr-xr-x  5 wballard  staff  170 Apr  4 15:11 ..
+.
+..
 
 ./___/wballard@glgroup.com/tmp:
-total 0
-drwxr-xr-x  2 wballard  staff   68 Apr  4 15:11 .
-drwxr-xr-x  5 wballard  staff  170 Apr  4 15:11 ..
+.
+..
