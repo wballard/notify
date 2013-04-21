@@ -97,11 +97,11 @@ Receiving, which is all the files new just now, in order
             if file.slice(-4) is 'yaml'
                 full_name = path.join options.new_dir, file
                 send_files.push
-                    tick: parseInt(file.split('.')[0])
+                    when: Number(file.split('.')[0])
                     name: file
                     data: yaml.safeLoad fs.readFileSync(full_name, 'utf8')
-        send_files = _.sortBy send_files, (x) -> Number(x.tick)
-        process.stdout.write yaml.safeDump _.map(send_files, (x) -> x.data)
+        send_files = _.sortBy send_files, (x) -> x.when
+        process.stdout.write yaml.safeDump _.map(send_files, (x) -> _.pick(x, 'data', 'when'))
         for file in _.map(send_files, (x) -> x.name)
             fs.renameSync path.join(options.new_dir, file), path.join(options.cur_dir, file)
 

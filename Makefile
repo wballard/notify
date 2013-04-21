@@ -17,7 +17,9 @@ _init:
 _sends: _init
 	$(NOTIFY) send wballard@glgroup.com --message "Hi" --tags "yep, tag" --link "83B5AF27-5765-440D-9CE3-0DC52E1B1673" --context "./test/stuff.yaml" | tee /tmp/$@
 	$(NOTIFY) send wballard@glgroup.com --message "Hi Again" --tags "more, tag" --context "./test/stuff.yaml" | tee -a /tmp/$@
-	$(NOTIFY) receive wballard@glgroup.com | tee -a /tmp/$@
+	$(NOTIFY) receive wballard@glgroup.com \
+	| grep --invert-match 'when:' \
+	| tee -a /tmp/$@
 	#better not see these twice
 	$(NOTIFY) receive wballard@glgroup.com | tee -a /tmp/$@
 	$(NOTIFY) clear wballard@glgroup.com | tee -a /tmp/$@
