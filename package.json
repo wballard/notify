@@ -7,6 +7,7 @@
     "js-yaml": "",
     "docopt": "",
     "colors": "",
+    "wrench": "",
     "lodash": ""
   },
   "engine": {
@@ -14,5 +15,9 @@
   },
   "scripts": {
     "test": "make test"
+  },
+  "bin": {
+    "notify": "./bin/notify"
   }
+
 }

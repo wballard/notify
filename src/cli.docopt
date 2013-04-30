@@ -19,3 +19,5 @@ The available commands are:
   send        Place a new message for a user
   receive     Get all new messages for a user
   clear       Empty out a user's old message archive
+
+NOTIFY_ROOT can be set rather than using --directory.

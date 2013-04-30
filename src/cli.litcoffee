@@ -6,6 +6,7 @@ modules and the command sub modules here.
     fs = require 'fs'
     _ = require 'lodash'
     yaml = require 'js-yaml'
+    wrench = require 'wrench'
     require('colors').setTheme
         info: 'green'
         error: 'red'
@@ -32,13 +33,13 @@ fork docopt and add this feature.
 The actual command line processing.
 
     cli = require './cli.docopt'
-
 Full on help
+
 
     if cli.options['--help']
         console.log cli.help
 
- root directory needs to be in the environment
+Root directory needs to be in the environment
 
     cli.options.root = path.resolve cli.options['--directory'] or process.env['NOTIFY_ROOT'] or process.cwd()
 
@@ -72,9 +73,9 @@ The sub-commands start here
 Init, make the root directory
 
     init = (options) ->
-        if not fs.existsSync options.root
-            console.log "Initializing #{options.root}".info
-            fs.mkdirSync options.root
+        fs.exists options.root, (exists) ->
+            if not exists
+                wrench.mkdirSyncRecursive options.root
 
 Sending, this is the heart of the matter
 
