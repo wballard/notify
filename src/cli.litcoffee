@@ -33,8 +33,8 @@ fork docopt and add this feature.
 The actual command line processing.
 
     cli = require './cli.docopt'
-Full on help
 
+Full on help
 
     if cli.options['--help']
         console.log cli.help
@@ -42,6 +42,7 @@ Full on help
 Root directory needs to be in the environment
 
     cli.options.root = path.resolve cli.options['--directory'] or process.env['NOTIFY_ROOT'] or process.cwd()
+    cli.options.username = cli.options['<username>'] or process.env['USER']
 
 Defaults, docopt isn't super smart about this part, so scrub some options.
 
@@ -90,9 +91,9 @@ Sending, this is the heart of the matter
         fs.writeFileSync path.join(options.tmp_dir, file_name), yaml.safeDump(data)
         fs.renameSync path.join(options.tmp_dir, file_name), path.join(options.new_dir, file_name)
 
-Receiving, which is all the files new just now, in order
+Peeking, almost like receiving, just without the move to the delivered folder
 
-    receive = (options) ->
+    peek = (options) ->
         send_files = []
         for file in fs.readdirSync options.new_dir
             if file.slice(-4) is 'yaml'
@@ -103,6 +104,13 @@ Receiving, which is all the files new just now, in order
                     data: yaml.safeLoad fs.readFileSync(full_name, 'utf8')
         send_files = _.sortBy send_files, (x) -> x.when
         process.stdout.write yaml.safeDump _.map(send_files, (x) -> _.pick(x, 'data', 'when'))
+        send_files
+
+Receiving, which is all the files new just now, in order, and then moving them
+aside to note that they are delivered
+
+    receive = (options) ->
+        send_files = peek options
         for file in _.map(send_files, (x) -> x.name)
             fs.renameSync path.join(options.new_dir, file), path.join(options.cur_dir, file)
 
@@ -120,6 +128,7 @@ Go!
     ensure_user cli.options
     cli.options.init and init cli.options
     cli.options.send and send cli.options
+    cli.options.peek and peek cli.options
     cli.options.receive and receive cli.options
     cli.options.clear and clear cli.options
 
