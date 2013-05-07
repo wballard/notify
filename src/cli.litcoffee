@@ -123,6 +123,14 @@ Clearing, which is all about making things go away
             count++
         console.log "#{count} files cleared".info
 
+Info about the user
+
+    about = (options) ->
+        about =
+            username: cli.options.username
+            directory: path.join cli.options.root, cli.options.username
+        console.log JSON.stringify(about)
+
 Go!
 
     ensure_user cli.options
@@ -131,4 +139,5 @@ Go!
     cli.options.peek and peek cli.options
     cli.options.receive and receive cli.options
     cli.options.clear and clear cli.options
+    cli.options.about and about cli.about
 

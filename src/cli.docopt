@@ -6,6 +6,7 @@ Usage:
   notify [options] receive [<username>]
   notify [options] peek [<username>]
   notify [options] clear [<username>]
+  notify [options] about user [<username>]
   notify --version
   notify --help
 
@@ -16,10 +17,11 @@ Options:
   --debug             Print extra info to help debug
 
 The available commands are:
-  init        Set up a new messaging root directory
-  send        Place a new message for a user
-  receive     Get all new messages for a user
-  clear       Empty out a user's old message archive
+  init          Set up a new messaging root directory
+  send          Place a new message for a user
+  receive       Get all new messages for a user
+  clear         Empty out a user's old message archive
+  about user    Information about the user in a nice JSON format
 
 NOTIFY_ROOT can be set rather than using --directory.
 USER can be set instead of <username>.
