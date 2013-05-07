@@ -44,14 +44,6 @@ Root directory needs to be in the environment
     cli.options.root = path.resolve cli.options['--directory'] or process.env['NOTIFY_ROOT'] or process.cwd()
     cli.options.username = cli.options['<username>'] or process.env['USER']
 
-Defaults, docopt isn't super smart about this part, so scrub some options.
-
-    for name, value of cli.options
-        if name.slice(0,2) is '--'
-            cli.options[name.slice(2)] = value
-        if name.slice(0,1) is '<' and name.slice(-1) is '>'
-            cli.options[name.slice(1,-1)] = value
-
 Debugging information helps sometimes
 
     if cli.options['--debug']
@@ -67,16 +59,16 @@ User directories need to exist
             options.cur_dir = cur_dir = path.join user, 'cur'
             for dir in [user, new_dir, tmp_dir, cur_dir]
                 if not fs.existsSync dir
-                    fs.mkdirSync dir
+                    wrench.mkdirSyncRecursive dir
 
 The sub-commands start here
 
 Init, make the root directory
 
     init = (options) ->
-        fs.exists options.root, (exists) ->
-            if not exists
-                wrench.mkdirSyncRecursive options.root
+        if not fs.existsSync options.root
+            wrench.mkdirSyncRecursive options.root
+        process.exit 0
 
 Sending, this is the heart of the matter
 
@@ -127,17 +119,17 @@ Info about the user
 
     about = (options) ->
         about =
-            username: cli.options.username
-            directory: path.join cli.options.root, cli.options.username
+            username: options.username
+            directory: path.join options.root, options.username
         console.log JSON.stringify(about)
 
 Go!
 
-    ensure_user cli.options
     cli.options.init and init cli.options
+    ensure_user cli.options
     cli.options.send and send cli.options
     cli.options.peek and peek cli.options
     cli.options.receive and receive cli.options
     cli.options.clear and clear cli.options
-    cli.options.about and about cli.about
+    cli.options.about and about cli.options
 
