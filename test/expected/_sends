@@ -4,6 +4,7 @@
       - tag
     message: Hi
     link: "83B5AF27-5765-440D-9CE3-0DC52E1B1673"
+    from: "wballard@mailframe.net"
     context: 
       things: yes
       about: 
@@ -17,6 +18,7 @@
       - tag
     message: Hi Again
     link: ""
+    from: ""
     context: 
       things: yes
       about: 
@@ -30,6 +32,7 @@
       - tag
     message: Hi
     link: "83B5AF27-5765-440D-9CE3-0DC52E1B1673"
+    from: "wballard@mailframe.net"
     context: 
       things: yes
       about: 
@@ -43,6 +46,7 @@
       - tag
     message: Hi Again
     link: ""
+    from: ""
     context: 
       things: yes
       about: 

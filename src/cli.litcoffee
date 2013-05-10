@@ -77,6 +77,7 @@ Sending, this is the heart of the matter
             tags: _.map (options['--tags'] or '').split(','), (x) -> x.trim()
             message: options['--message'] or ''
             link: options['--link'] or ''
+            from: options['--from'] or ''
         if options['--context'] and fs.existsSync(options['--context'])
             data.context = yaml.safeLoad(fs.readFileSync(options['--context'], 'utf8'))
         file_name = "#{Date.now()}.#{process.pid}.yaml"
