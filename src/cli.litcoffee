@@ -94,7 +94,8 @@ Peeking, almost like receiving, just without the move to the delivered folder
                     when: Number(file.split('.')[0])
                     name: file
                     data: yaml.safeLoad fs.readFileSync(full_name, 'utf8')
-        send_files = _.sortBy send_files, (x) -> x.when
+        #ok, this looks a bit odd, but it is descending sort, really, no kidding
+        send_files = _.sortBy send_files, (x) -> 9007199254740992 - x.when
         process.stdout.write yaml.safeDump _.map(send_files, (x) -> _.pick(x, 'data', 'when'))
         send_files
 
