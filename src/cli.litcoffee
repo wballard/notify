@@ -116,7 +116,8 @@ aside to note that they are delivered
                 fs.renameSync path.join(options.new_dir, file), path.join(options.cur_dir, file)
             fs.writeFileSync status_file, "#{Date.now()}"
         else
-            process.stdout.write yaml.safeDump []
+            #temporarily unavailable
+            process.exit 35
 
 Clearing, which is all about making things go away
 
