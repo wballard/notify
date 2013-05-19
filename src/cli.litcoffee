@@ -53,7 +53,7 @@ User directories need to exist
 
     ensure_user = (options) ->
         if options.username
-            user = path.join options.root, options.username
+            options.user_dir = user = path.join options.root, options.username
             options.new_dir = new_dir = path.join user, 'new'
             options.tmp_dir = tmp_dir = path.join user, 'tmp'
             options.cur_dir = cur_dir = path.join user, 'cur'
@@ -104,9 +104,19 @@ Receiving, which is all the files new just now, in order, and then moving them
 aside to note that they are delivered
 
     receive = (options) ->
-        send_files = peek options
-        for file in _.map(send_files, (x) -> x.name)
-            fs.renameSync path.join(options.new_dir, file), path.join(options.cur_dir, file)
+        status_file = path.join(options.user_dir, '.receive')
+        if fs.existsSync status_file
+            last_run = Number(fs.readFileSync status_file)
+        else
+            last_run = 0
+        interval = Number(options['--throttle'] or 0) * 60 * 1000
+        if (last_run + interval) <= Date.now()
+            send_files = peek options
+            for file in _.map(send_files, (x) -> x.name)
+                fs.renameSync path.join(options.new_dir, file), path.join(options.cur_dir, file)
+            fs.writeFileSync status_file, "#{Date.now()}"
+        else
+            process.stdout.write yaml.safeDump []
 
 Clearing, which is all about making things go away
 

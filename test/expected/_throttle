@@ -1,0 +1,12 @@
+- data: 
+    tags: 
+      - ""
+    message: One
+    link: ""
+    from: "wballard@mailframe.net"
+- data: 
+    tags: 
+      - ""
+    message: Two
+    link: ""
+    from: "wballard@mailframe.net"

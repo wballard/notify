@@ -3,7 +3,7 @@ Notify, command line system for sending and receiving messages.
 Usage:
   notify [options] init
   notify [options] send [<username>] [--message=<message>] [--tags=<csv_tags>] [--link=<link>] [--context=<yaml_filename>] [--from=<fromusername>]
-  notify [options] receive [<username>]
+  notify [options] receive [<username>] [--throttle=<throttle_minutes>]
   notify [options] peek [<username>]
   notify [options] clear [<username>]
   notify [options] about user [<username>]

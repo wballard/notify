@@ -4,7 +4,7 @@ NOTIFY?=./bin/notify --directory ./___
 .PHONY: test
 
 test:
-	$(MAKE) _init _sends
+	$(MAKE) _init _sends _throttle
 
 test_pass:
 	DIFF=cp $(MAKE) test
@@ -27,4 +27,15 @@ _sends: _init
 	$(NOTIFY) receive wballard@glgroup.com | tee -a /tmp/$@
 	$(NOTIFY) clear wballard@glgroup.com | tee -a /tmp/$@
 	ls -aR ./___ | tee -a /tmp/$@
+	$(DIFF) /tmp/$@ test/expected/$@
+
+_throttle: _init
+	$(NOTIFY) send wballard@glgroup.com --from wballard@mailframe.net --message "One"
+	$(NOTIFY) send wballard@glgroup.com --from wballard@mailframe.net --message "Two"
+	$(NOTIFY) receive wballard@glgroup.com \
+	| grep --invert-match 'when:' \
+	| tee /tmp/$@
+	$(NOTIFY) send wballard@glgroup.com --from wballard@mailframe.net --message "Three"
+	#will digest nothing
+	$(NOTIFY) receive wballard@glgroup.com --throttle 5 | tee -a /tmp/$@
 	$(DIFF) /tmp/$@ test/expected/$@
