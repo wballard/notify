@@ -112,6 +112,9 @@ aside to note that they are delivered
         interval = Number(options['--throttle'] or 0) * 60 * 1000
         if (last_run + interval) <= Date.now()
             send_files = peek options
+            if send_files.length is 0 and interval
+                #file not found -- nothing to deliver
+                process.exit 2
             for file in _.map(send_files, (x) -> x.name)
                 fs.renameSync path.join(options.new_dir, file), path.join(options.cur_dir, file)
             fs.writeFileSync status_file, "#{Date.now()}"

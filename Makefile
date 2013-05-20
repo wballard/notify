@@ -35,7 +35,9 @@ _throttle: _init
 	$(NOTIFY) receive wballard@glgroup.com \
 	| grep --invert-match 'when:' \
 	| tee /tmp/$@
+	#will digest nothing, nothing to digest
+	-$(NOTIFY) receive wballard@glgroup.com --throttle 5
 	$(NOTIFY) send wballard@glgroup.com --from wballard@mailframe.net --message "Three"
-	#will digest nothing
+	#will digest nothing, throttled
 	$(NOTIFY) receive wballard@glgroup.com --throttle 5 | tee -a /tmp/$@
 	$(DIFF) /tmp/$@ test/expected/$@
