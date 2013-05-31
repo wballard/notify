@@ -15,8 +15,8 @@ _init:
 	$(DIFF) /tmp/$@ test/expected/$@
 
 _sends: _init
-	$(NOTIFY) send wballard@glgroup.com --from wballard@mailframe.net --message "Hi" --tags "yep, tag" --link "83B5AF27-5765-440D-9CE3-0DC52E1B1673" --context "./test/stuff.yaml" | tee /tmp/$@
-	$(NOTIFY) send wballard@glgroup.com --message "Hi Again" --tags "more, tag" --context "./test/stuff.yaml" | tee -a /tmp/$@
+	$(NOTIFY) send Wballard@glgroup.com --from wballard@mailframe.net --message "Hi" --tags "yep, tag" --link "83B5AF27-5765-440D-9CE3-0DC52E1B1673" --context "./test/stuff.yaml" | tee /tmp/$@
+	$(NOTIFY) send wBallard@glgroup.com --message "Hi Again" --tags "more, tag" --context "./test/stuff.yaml" | tee -a /tmp/$@
 	$(NOTIFY) peek wballard@glgroup.com \
 	| grep --invert-match 'when:' \
 	| tee -a /tmp/$@

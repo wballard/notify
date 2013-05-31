@@ -42,7 +42,7 @@ Full on help
 Root directory needs to be in the environment
 
     cli.options.root = path.resolve cli.options['--directory'] or process.env['NOTIFY_ROOT'] or process.cwd()
-    cli.options.username = cli.options['<username>'] or process.env['USER']
+    cli.options.username = (cli.options['<username>'] or process.env['USER']).toLowerCase()
 
 Debugging information helps sometimes
 
